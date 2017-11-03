@@ -35,7 +35,7 @@ void make_move(int num) {
 		cout << endl;
 
 
-		// cout  êîìàíäû êàê???
+	
 
 	}
 	if (num == 1) {
@@ -50,24 +50,24 @@ void make_move(int num) {
 }
 
 char check(){
-	for (int i = 0; i < 3; i++) { //Äëÿ ïîáåäû íóæíû 3 êëåòî÷êè
+	for (int i = 0; i < 3; i++) { 
 
-		if ((cells[i * 3] == cells[i * 3 + 1] && cells[i * 3 + 1] == cells[i * 3 + 2]) && cells[i * 3]!=' '){ //ïî ãîðèçîíòàëè 0-1-2, 3-4-5 è 6-7-8
+		if ((cells[i * 3] == cells[i * 3 + 1] && cells[i * 3 + 1] == cells[i * 3 + 2]) && cells[i * 3]!=' '){ 
 
 			return cells [i];;
 			}
 
-		if ((cells[i] == cells[i + 3] && cells[i + 3] == cells[i + 6]) && cells[i]!=' '){ //ïî âåðòèêàëè 0-3-6, 1-4-7 è 2-5-8
+		if ((cells[i] == cells[i + 3] && cells[i + 3] == cells[i + 6]) && cells[i]!=' '){ 
 		return cells [i];
 			}
 
-		if (((cells[2] == cells[4] && cells[4] == cells[6]) && cells[2]!=' ') || ((cells[0] == cells[4] && cells[4] == cells[8]) && cells[0]!=' ')){ // ïî äèàãîíàëè 0-4-8 è 2-4-6
+		if (((cells[2] == cells[4] && cells[4] == cells[6]) && cells[2]!=' ') || ((cells[0] == cells[4] && cells[4] == cells[8]) && cells[0]!=' ')){ 
 
 			return cells [i];
 			}
 	}
 	
-		return ' '; //Èíà÷å - íè÷üÿ
+		return ' '; 
 	
 }
 
@@ -83,10 +83,9 @@ int main() {
 		}
 		else make_move(2);
 		show_cells();
-		if (move >= 5) { /*Åñëè íîìåð õîäà 5 èëè áîëüøå, òî ïðîõîäèò ïðîâåðêà íà ïîáåäó (ðàíüøå, ÷åì íà 5-îì õîäå ïîáåäèòü íåëüçÿ)*/
+		if (move >= 5) { 
 		check();
-			char  win = check(); //Ñèìâîë ïîáåäû - ýòî âîçâðàùåííîå çíà÷åíèå ôóíêöèè ïðîâåðêè
-			if(win!=' ') {
+			char  win = check(); 
 			    if (win == 'X') {
 		cout << "X win";
 	}
@@ -101,7 +100,6 @@ int main() {
 			    }
 		
 		}
-	}
 	
 	return 0;
 }
