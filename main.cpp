@@ -16,7 +16,7 @@ void show_cells() {
 }
 
 void show_available_moves() {
-	int s;
+	int s=0;
 	for (int i = 0; i<9; i++) {
 		if (i<3) {
 			cout << ++s << ". mark cell a" << i + 1 << " as";
@@ -52,16 +52,16 @@ void make_move(int num) {
 char check(){
 	for (int i = 0; i < 3; i++) { //Äëÿ ïîáåäû íóæíû 3 êëåòî÷êè
 
-		if (cells[i * 3] == cells[i * 3 + 1] && cells[i * 3 + 1] == cells[i * 3 + 2] && cells[i * 3]!=' '){ //ïî ãîðèçîíòàëè 0-1-2, 3-4-5 è 6-7-8
+		if ((cells[i * 3] == cells[i * 3 + 1] && cells[i * 3 + 1] == cells[i * 3 + 2]) && cells[i * 3]!=' '){ //ïî ãîðèçîíòàëè 0-1-2, 3-4-5 è 6-7-8
 
 			return cells [i];;
 			}
 
-		if (cells[i] == cells[i + 3] && cells[i + 3] == cells[i + 6] && cells[i]!=' '){ //ïî âåðòèêàëè 0-3-6, 1-4-7 è 2-5-8
+		if ((cells[i] == cells[i + 3] && cells[i + 3] == cells[i + 6]) && cells[i]!=' '){ //ïî âåðòèêàëè 0-3-6, 1-4-7 è 2-5-8
 		return cells [i];
 			}
 
-		if ((cells[2] == cells[4] && cells[4] == cells[6] && cells[2]!=' ') || (cells[0] == cells[4] && cells[4] == cells[8]) && cells[0]!=' '){ // ïî äèàãîíàëè 0-4-8 è 2-4-6
+		if (((cells[2] == cells[4] && cells[4] == cells[6]) && cells[2]!=' ') || ((cells[0] == cells[4] && cells[4] == cells[8]) && cells[0]!=' ')){ // ïî äèàãîíàëè 0-4-8 è 2-4-6
 
 			return cells [i];
 			}
