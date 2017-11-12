@@ -1,12 +1,11 @@
-
 #include "stdafx.h"
 #include <iostream>
 using namespace std;
 char win;
+int k_qiit;
 
 
-
-void show_cells(char cells[9]) {
+void show_cells(char *cells) {
 	cout << "   1   2   3" << endl;
 	cout << " +---+---+---+" << endl;
 	cout << "a| " << cells[0] << " | " << cells[1] << " | " << cells[2] << " |" << endl;
@@ -17,7 +16,7 @@ void show_cells(char cells[9]) {
 	cout << " +---+---+---+" << endl;
 }
 
-void show_available_moves(char op, char cells[9]) {
+void show_available_moves(char op, char *cells) {
 
 	int k = 0;
 	for (int i = 0; i < 9; i++) {
@@ -34,10 +33,12 @@ void show_available_moves(char op, char cells[9]) {
 			}
 		}
 	}
+	
+	
 	cout << ++k << ". quit" << endl;
 }
 
-int make_move(char op, char cells[9]){
+int make_move(char op, char *cells){
 int cell;
 while (cin >> cell)
 {
@@ -57,7 +58,7 @@ while (cin >> cell)
 
 	}
 
-	char check(char cells[9]) {
+	char check(char *cells) {
 		for (int i = 0; i < 3; i++) {
 
 			if ((cells[i * 3] == cells[i * 3 + 1] && cells[i * 3 + 1] == cells[i * 3 + 2]) && cells[i * 3] != ' ') {
