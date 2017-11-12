@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 char win;
@@ -52,14 +51,14 @@ int make_move(char op, char *cells) {
 				show_cells(cells);
 				return 0;
 			}
-			if (cell == k_quit) {
-	             cout << "GAME OVER";
-	             ex=k_quit;
-	             return -1;
-	       	}
+		}
+		if (cell == k_quit) {
+			cout << "GAME OVER";
+			ex = k_quit;
+			return -1;
 		}
 	}
-return 0;
+
 }
 
 char check(char *cells) {
@@ -120,7 +119,8 @@ int main() {
 		}
 
 	}
+	if (k_quit == ex) {
+		return -1;
+	}
 	return 0;
 }
-
-
