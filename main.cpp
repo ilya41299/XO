@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <iostream>
 using namespace std;
 char win;
@@ -108,13 +109,17 @@ int main() {
 			char  win = check(cells);
 			if (win == 'X') {
 				cout << "X win";
+				return -1;
 			}
 			if (win == 'O') {
 				cout << "O win";
+				return -1;
 			}
-			
+			if (move == 9 && win != 'X' && win != 'O') {
+				cout << "Draw!";
+				return -1;
+			}
 		}
-
 	}
 	if (k_quit == ex) {
 		return -1;
