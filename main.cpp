@@ -58,7 +58,7 @@ int make_move(char op, char *cells) {
 			return -1;
 		}
 	}
-
+	return 0;
 }
 
 char check(char *cells) {
@@ -112,10 +112,7 @@ int main() {
 			if (win == 'O') {
 				cout << "O win";
 			}
-			if (move == 9 && (win != 'O') && (win != 'X')) {
-				cout << " nichja";
-			}
-			break;
+			
 		}
 
 	}
