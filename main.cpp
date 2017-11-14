@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <iostream>
+#include <sstream>
 using namespace std;
 char win;
 int k_quit;
@@ -25,11 +26,10 @@ void show_available_moves(char op, char *cells) {
 				cout << ++k << ".mark cell a" << i + 1 << " as " << op << endl;
 			}
 			if (i>2 && i<6) {
-				cout << ++k << ".mark cell b" << i + 1 << " as " << op << endl;
+				cout << ++k << ".mark cell b" << i - 2 << " as " << op << endl;
 			}
 			if (i>5) {
-				cout << ++k << ".mark cell c" << i + 1 << " as " << op << endl;
-
+				cout << ++k << ".mark cell c" << i - 5 << " as " << op << endl;
 			}
 		}
 	}
@@ -37,27 +37,33 @@ void show_available_moves(char op, char *cells) {
 	k_quit = k;
 }
 
-int make_move(char op, char *cells) {
+int make_move(int move, char op, char *cells) {
 	int cell;
-	while (cin >> cell)
-	{
-		int k = 0;
-		for (int i = 0; i < 10; i++)
-		{
-			if (cells[i] == ' ') {
-				k++;
-			}
-			if (k == cell) {
-				cells[i] = op;
-				show_cells(cells);
-				return 0;
-			}
+	string string;
+	getline(cin, string);
+	istringstream stream(string);
+	stream >> cell;
+	while (cell < 1 || cell >(11 - move)) {
+		cout << endl << "You can not use this move. Enter another move" << endl;
+		getline(cin, string);
+		istringstream stream(string);
+		stream >> cell;
+	}
+	int k = 0;
+	for (int i = 0; i < 10; i++){
+		if (cells[i] == ' ') {
+			k++;
 		}
-		if (cell == k_quit) {
-			cout << "GAME OVER";
-			ex = k_quit;
-			return -1;
-		}
+		if (k == cell) {
+			cells[i] = op;
+			show_cells(cells);
+			return 0;
+			}
+	}
+	if (cell == k_quit) {
+		cout << "GAME OVER" << endl;
+		ex = k_quit;
+		return -1;
 	}
 	return 0;
 }
@@ -84,8 +90,6 @@ char check(char *cells) {
 
 }
 
-
-
 int main() {
 	char cells[9] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
 	char op;
@@ -94,12 +98,12 @@ int main() {
 		if (move % 2) {
 			op = 'X';
 			show_available_moves(op, cells);
-			make_move(1, cells);
+			make_move(move, op, cells);
 		}
 		else {
 			op = 'O';
 			show_available_moves(op, cells);
-			make_move(2, cells);
+			make_move(move, op, cells);
 		}
 		if (k_quit == ex) {
 			return -1;
@@ -108,15 +112,15 @@ int main() {
 			check(cells);
 			char  win = check(cells);
 			if (win == 'X') {
-				cout << "X win";
+				cout << "X win" << endl;
 				return -1;
 			}
 			if (win == 'O') {
-				cout << "O win";
+				cout << "O win" << endl;
 				return -1;
 			}
 			if (move == 9 && win != 'X' && win != 'O') {
-				cout << "Draw!";
+				cout << "Draw!" << endl;
 				return -1;
 			}
 		}
